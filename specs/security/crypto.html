@@ -1,0 +1,2045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.2">
+<title>加解密-引文</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment @import statement when using as custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}
+audio,canvas,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+script{display:none!important}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*::before,*::after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite::before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
+:not(pre)>code.nobreak{word-wrap:normal}
+:not(pre)>code.nowrap{white-space:nowrap}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details>summary:first-of-type{cursor:pointer;display:list-item;outline:none;margin-bottom:.75em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class="highlight"],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos{border-right:1px solid currentColor;opacity:.35;padding-right:.5em}
+pre.pygments .lineno{border-right:1px solid currentColor;opacity:.35;display:inline-block;margin-right:.75em}
+pre.pygments .lineno::before{content:"";margin-right:-.125em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin:0 0 1.25em;padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
+table.tableblock{max-width:100%;border-collapse:separate}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
+table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
+table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
+table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px}
+table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0}
+table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
+table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot,table.frame-ends{border-width:1px 0}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
+ul.inline{display:-ms-flexbox;display:-webkit-box;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media print,amzn-kf8{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#加解密-引文">加解密-引文</a></li>
+<li><a href="#术语定义">术语定义：</a></li>
+<li><a href="#加解密规范">加解密规范</a>
+<ul class="sectlevel2">
+<li><a href="#算法的选择">算法的选择</a></li>
+<li><a href="#应用实践">应用&amp;实践</a></li>
+<li><a href="#典型场景应用指导">典型场景应用指导</a></li>
+</ul>
+</li>
+<li><a href="#附录">附录</a>
+<ul class="sectlevel2">
+<li><a href="#常见算法简介">常见算法简介</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="加解密-引文"><a class="anchor" href="#加解密-引文"></a>加解密-引文</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>密码算法主要提供的能力 <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>可靠性</p>
+<div class="ulist">
+<ul>
+<li>
+<p>是系统安全的最基于要求之一，是所有网络信息系统的建设和运行目标。网络信息系统的可靠性测度主要有三种：抗毁性、生存性和有效性。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>可用性</p>
+<div class="ulist">
+<ul>
+<li>
+<p>是网络信息可被授权实体访问并按需求使用的特性。即网络信息服务在需要时，允许授权用户或实体使用的特性，或者是网络部分受损或需要降级使用时，仍能为授权用户提供有效服务的特性。可用性是网络信息系统面向用户的安全性能。网络信息系统最基本的功能是向用户提供服务，而用户的需求是随机的、多方面的、有时还有时间要求。可用性一般用系统正常使用时间和整个工作时间之比来度量。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>保密性</p>
+<div class="ulist">
+<ul>
+<li>
+<p>是网络信息不被泄露给非授权的用户、实体或过程，或供其利用的特性。即，防止信息泄漏给非授权个人或实体，信息只为授权用户使用的特性。保密性是在可靠性和可用性基础之上，保障网络信息安全的重要手段。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>完整性</p>
+<div class="ulist">
+<ul>
+<li>
+<p>是网络信息未经授权不能进行改变的特性。即网络信息在存储或传输过程中保持不被偶然或蓄意地删除、修改、伪造、乱序、重放、插入等破坏和丢失的特性。完整性是一种面向信息的安全性，它要求保持信息的原样，即信息的正确生成和正确存储和传输</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>真实性：使用密码算法相应方式可以确定远程用户或系统的身份。比如web服务器提供的SSL证书能够保证用户连接的是正确的服务器。</p>
+</li>
+<li>
+<p>不可抵赖性（不可否认性）</p>
+<div class="ulist">
+<ul>
+<li>
+<p>在网络信息系统的信息交互过程中，确信参与者的真实同一性。即，所有参与者都不可能否认或抵赖曾经完成的操作和承诺。利用信息源证据可以防止发信方不真实地否认已发送信息，利用递交接收证据可以防止收信方事后否认已经接收的信息。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>可控性</p>
+<div class="ulist">
+<ul>
+<li>
+<p>对网络信息的传播及内容具有控制能力的特性。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>密钥管理</p>
+<div class="ulist">
+<ul>
+<li>
+<p>密钥管理是安全处理密钥的生命周期。密钥的产生、装入、存储、备份、分配、更新、吊销、销毁等内容，其中分配和存储最困难。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>密钥分层管理</p>
+<div class="ulist">
+<ul>
+<li>
+<p>可以使用不同的密钥保护不同的秘密，即使攻击者攻破了一个密钥，受威胁的只是这个攻破密钥所保护的秘密，其它的秘密任然安全。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>工作密钥/会话密钥</p>
+<div class="ulist">
+<ul>
+<li>
+<p>真正用来加密明文的密钥，为了安全，更换比较频繁，每次会话均会变更。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>密钥加密密钥</p>
+<div class="ulist">
+<ul>
+<li>
+<p>密钥加密密钥主要用于生成会话密钥，其生存周期相对较长。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>根密钥/主密钥</p>
+<div class="ulist">
+<ul>
+<li>
+<p>使用频次最少，一般仅在启动或初始化时使用，用于保护其他密钥，生存周期最长，需要的安全性最高。</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>保证以上能力的关键，就是选择正确的加密算法。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="术语定义"><a class="anchor" href="#术语定义"></a>术语定义：</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>对称算法</p>
+<div class="ulist">
+<ul>
+<li>
+<p>对称算法的加密密钥只能从解密密钥中推算出来，反过来也成立。在大多数对称算法中，加、解密密钥是相同的。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>非对称算法</p>
+<div class="ulist">
+<ul>
+<li>
+<p>也叫公开密钥算法：用于加密的密钥与用于解密的密钥不同，而且解密的密钥不能根据加密密钥计算出来。之所以叫做公开密钥算法，是因为加密密钥能够公开，及陌生人用加密密钥加密信息，单只用于相应的解密密钥才能解密信息。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>哈希算法</p>
+<div class="ulist">
+<ul>
+<li>
+<p>是一种将不同长度的数据映射成固定长度数据的算法。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>消息认证码</p>
+<div class="ulist">
+<ul>
+<li>
+<p>密码学上的一种数据校验和，通过使用对称密钥来检测数据是否发生意外或者有意的篡改。消息验证码简称MAC。也可理解为在哈希算法基础上多了一层加密。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>流密码</p>
+<div class="ulist">
+<ul>
+<li>
+<p>流密码也成为序列密码，是对称密码算法的一种，他是用算法和密钥一起产生的一个随机码流，将其与数据流XOR产生加密后的数据流。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>分组密码</p>
+<div class="ulist">
+<ul>
+<li>
+<p>是对称算法的一种，它将明文分成多个等长的组，并用相同的算法对每组进行加密。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>工作模式</p>
+<div class="ulist">
+<ul>
+<li>
+<p>是指使用分组密码算法对数据进行加密转换的方法。常见的工作模式有ECB、CBC、CFB、OFB等模式。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>初始向量（IV，Initial Vector）</p>
+<div class="ulist">
+<ul>
+<li>
+<p>是许多工作模式中用于随机化加密的一块数据，因此可以由相同的明文、相同的密钥产生不同的密文。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>填充（Padding）</p>
+<div class="ulist">
+<ul>
+<li>
+<p>分组密码算法只能对数据长度为分组长度整数倍的数据进行处理，填充就是保证数据长度符合这种要求的一种方法。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>盐值（Salt）</p>
+<div class="ulist">
+<ul>
+<li>
+<p>通过在口令任意位置插入字符串，让哈希后的结果和原始口令的哈希结果不相符，这种过程称之为"加盐"。这个字符串就是盐值。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>安全强度（Security Strength）</p>
+<div class="ulist">
+<ul>
+<li>
+<p>是用来衡量密码算法或者密码系统的安全性，它是对破解密码算法或者系统所需要的工作量的一个数值度量。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>口令（Password）</p>
+<div class="ulist">
+<ul>
+<li>
+<p>是指用于身份认证、鉴权或者导出加密密钥的字符串，可由字母、数字和符合组成。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>密钥（Key）</p>
+<div class="ulist">
+<ul>
+<li>
+<p>是一个结合密码算法一起使用的参数，可以通过它加密或恢复数据明文，没有它则不行。</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="加解密规范"><a class="anchor" href="#加解密规范"></a>加解密规范</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="算法的选择"><a class="anchor" href="#算法的选择"></a>算法的选择</h3>
+<div class="sect3">
+<h4 id="选择标准的公开密码算法"><a class="anchor" href="#选择标准的公开密码算法"></a>选择标准的公开密码算法</h4>
+<div class="paragraph">
+<p>选择标准的公开密码算法而非私有的、非标准的密码算法，原因主要有</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>非密码学专家设计的密码算法，难以达到密码学领域的专业性要求</p>
+</li>
+<li>
+<p>技术上未经业界的分析验证，有存在未知的缺陷的可能</p>
+</li>
+<li>
+<p>违背了加密算法要公开透明的原则</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>举例</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>未公开的、自行设计的密码算法，简单例子：变形/字符串移位/替换等方式。网易云音乐因自行使用特定字符异或处理，造成易破解，带来不可估量的经济损失。</p>
+</li>
+<li>
+<p>自行对标准密码算法进行改造的。如自定义哈希算法将md5算法最后一位固定置为0，可能造成哈希冲突，无法公开算法等。</p>
+</li>
+<li>
+<p>用编码的方式（如Base64编码）实现数据伪加密。编码 <code>≠</code> 加密，编码后实际未进行任何加密。</p>
+</li>
+<li>
+<p>用差错控制编码（如奇偶校验、CRC）实现完整性校验。这类校验在恶意伪造场景非常无力。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="优先使用强密码算法"><a class="anchor" href="#优先使用强密码算法"></a>优先使用强密码算法</h4>
+<div class="paragraph">
+<p>密码算法分类</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>不安全密码算法</p>
+<div class="ulist">
+<ul>
+<li>
+<p>随着密码技术的发展以及计算机及计算能力的提升，一些密码算法现今已经不适用于安全领域。</p>
+</li>
+<li>
+<p>如：<code>MD5</code> 算法，由于算法本身被发现弱点，现在已经可以人为构造出两个具有相同MD5校验值的信息。</p>
+</li>
+<li>
+<p>又如 <code>DES</code> 算法，因为计算能力提升导致对其暴力破解成为可能，现有的暴力破解设备能将破解DES的时间减少在一天以内。</p>
+</li>
+<li>
+<p>继续使用这些不安全的密码算法，可能有数据不安全的风险。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>可用密码算法</p>
+<div class="ulist">
+<ul>
+<li>
+<p>未证实存在安全问题，但使用不当容易引起安全威胁的算法</p>
+</li>
+<li>
+<p>安全强度不足导致生命周期很快结束的算法，随着计算机硬件水平的发展，未来可能容易被破解。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>强密码算法</p>
+<div class="ulist">
+<ul>
+<li>
+<p>经业界普遍认可，安全强度满足大部分场景要求，安全性可以得到保证的算法。</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>下表基于 <code>NIST SPS800-57</code> <sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup>
+定义的安全强度以及对应的生命周期，列出了常见 <strong>不安全密码算法</strong> 、 <strong>可用密码算法</strong> 和推荐使用的 <strong>强密码算法</strong> 。</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. 加密算法列表</caption>
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 28.5714%;">
+<col style="width: 28.5714%;">
+<col style="width: 28.5715%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">加密类型</th>
+<th class="tableblock halign-left valign-top">不安全密码算法</th>
+<th class="tableblock halign-left valign-top">可用密码算法</th>
+<th class="tableblock halign-left valign-top"><strong>强密码算法</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">对称加密-分组加密</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Blowfish</p>
+</li>
+<li>
+<p>DES</p>
+</li>
+<li>
+<p>DESX</p>
+</li>
+<li>
+<p>RC2</p>
+</li>
+<li>
+<p>Skipjack</p>
+</li>
+<li>
+<p>2TDEA</p>
+</li>
+<li>
+<p>TEA</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>3DES（K1,K2,K3各不相同）</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>AES（≥128bits）</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">对称加密-流加密</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>SEAL</p>
+</li>
+<li>
+<p>CYLINK_MEK</p>
+</li>
+<li>
+<p>RC4(≤128bits)</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>RC4(≥128bits)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>AES（≥128bits）</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">哈希算法</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>SHA0</p>
+</li>
+<li>
+<p>MD2</p>
+</li>
+<li>
+<p>MD4</p>
+</li>
+<li>
+<p>MD5</p>
+</li>
+<li>
+<p>RIPEMD</p>
+</li>
+<li>
+<p>RIPEMD-128</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>SHA-1</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>SHA256或以上</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">非对称加密</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>RSA</code> (&lt;1024bits)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>RSA</code> (1024bits)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>RSA</code> (≥2048bits)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">数字签名</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>RSA</code> (&lt;1024bits)</p>
+</li>
+<li>
+<p>DSA(&lt;1024bits)</p>
+</li>
+<li>
+<p>ECDSA(&lt;160bits)</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>RSA</code> (1024bits)</p>
+</li>
+<li>
+<p>DSA(1024bits)</p>
+</li>
+<li>
+<p><code>RSA</code> (≥ 2048bits)</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>DSA(≥ 2048bits)</p>
+</li>
+<li>
+<p>ECDSA(≥256bits)</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">密钥交换</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>DH(&lt;1024bits)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>DH(1024bits)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>DH(≥ 2048bits)</p>
+</li>
+<li>
+<p>ECDSA(≥256dhbits)</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>建议使用的算法列表</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">算法类别</th>
+<th class="tableblock halign-left valign-top">加密算法</th>
+<th class="tableblock halign-left valign-top">最低强度</th>
+<th class="tableblock halign-left valign-top">建议默认强度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">对称加密算法</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AES(SM4)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">256</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">256</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">非对称算法</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>RSA</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2048</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2048</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">非对称算法</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ECC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">数字签名算法</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DSA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1024</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2048</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">数字签名算法</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ECDSA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">256</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不可逆HASH算法</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">224</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">256</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">基于哈希的消息验证码算法</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HMAC-SHA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">224</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">256</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">密钥交换算法</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ECDH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">256</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">256</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p>RC4很容易用错，流密码加密推荐使用AES加密算法代替。</p>
+</li>
+<li>
+<p>SHA-1用于数字签名时为不安全算法，用于消息认证、密钥导出函数、随机数生成以及hash-only场景时可作为遗留使用的算法。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="设计时考虑可替换可升级"><a class="anchor" href="#设计时考虑可替换可升级"></a>设计时考虑可替换、可升级</h4>
+<div class="paragraph">
+<p>密码算法的安全使用期限制是基于当前的计算能力及密码分析水平评估算出来的，如果计算能力得到突破性的提高，或者密码算法设计上的缺陷被新发现，都会使密码算法达不到预计的安全寿命。故终有一天会使用新的算法替换原有加密算法，因此在设计阶段时就应提前预料到，降低加密算法变更带来的复杂性。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>算法模块独立，采用接口隔离。充分考虑扩展性。</p>
+</li>
+<li>
+<p>加密算法采用配置项形式确定，可通过配置来选择加密算法。</p>
+</li>
+<li>
+<p>为防止配置文件被篡改而导致系统加密算法安全性降低，需对配置文件进行访问控制和完整性校验（HMAC）。</p>
+</li>
+<li>
+<p>为保证加密算法升级，需要在密文中增加算法标识，或密钥ID、IV值、盐值等相关的信息。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="应用实践"><a class="anchor" href="#应用实践"></a>应用&amp;实践</h3>
+<div class="paragraph">
+<p>密码系统的安全主要由以下两点保证：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>选择了安全的加解密算法</p>
+</li>
+<li>
+<p>正确使用算法</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="安全随机数"><a class="anchor" href="#安全随机数"></a>安全随机数</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>随机数应用生成IV、盐值、密钥等，都属于密码算法用途。不安全的随机数使得密钥、IV值等可被全部或部分预测。要生成密码学意义上的安全随机数，必须保证其不可预测性。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>故应利用硬件接口等安全随机数生成方式来生成。如下</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>OpenSSL中 <code>RAND_bytes()</code></p>
+</li>
+<li>
+<p>JDK的 <code>java.security.SecureRandom()</code></p>
+</li>
+<li>
+<p>类Unix平台 <code>/dev/random</code> 文件；</p>
+</li>
+<li>
+<p>Windows平台 <code>RtlGenRandom()</code>；</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="使用对称-分组密码算法时优先使用aes-cbc"><a class="anchor" href="#使用对称-分组密码算法时优先使用aes-cbc"></a>使用对称-分组密码算法时，优先使用`AES-CBC`</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>分组密码算法有多种工作模式，不同工作模式有特定的适用场景。CBC模式适用性最好，是使用最广泛的工作模式，故优先选择。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>ECB模式对于同样的明文会产生同样的密文块，不能提供严格的数据保密性，不能抵抗替换攻击，攻击者可以调换加密块的顺序而不被发现。因此，应禁止使用ECB模式。</p>
+</div>
+<div class="paragraph">
+<p>对于有并行处理，加密认证等明确的特殊需求的，可以选择具备对应特性的工作模式。如下：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>需要进用行认证加密时，可使 <code>GCM</code> 和 <code>CCM</code> 模式</p>
+</li>
+<li>
+<p>需要对数据进行并行处理，预计算或需要支持随机访问时，可使用 <code>CTR</code> 模式</p>
+</li>
+<li>
+<p>存储设备加密时，可使用 <code>XTS-AES</code> 模式</p>
+</li>
+<li>
+<p>图像、语音等信号流加密时，可使用`OFB`模式，即使个别出错也不影响效果</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="分组密码算法使用到的iv值必须不可预测"><a class="anchor" href="#分组密码算法使用到的iv值必须不可预测"></a>分组密码算法使用到的IV值必须不可预测</h4>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>CBC和CFB模式下对于任意给定的明文，作用于明文的IV在产生之前都不应该被预测出来。对称分组密码算法中使用的IV
+值如果能被预测出来，就容易受到选择明文攻击，攻击者可以通过不断的构造明文去加密，以此来猜测某一密文对应的明文。对于数据库中保存的一些敏感字段（如用户口令、金额、投票结果等）其加密使用的IV值必须不可预测，否则其明文很容易被猜测出来。</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; NIST SP800-38A
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>IV</code> 使用安全的随机数。具体的参考 <a href="#安全随机数">随机数小节</a> 的说明。</p>
+</li>
+<li>
+<p><code>IV</code> 随机，即便在使用同一密钥的情况下。攻击者也无法得到密文间的相关性。</p>
+</li>
+<li>
+<p>对于一些特殊的情景，如 <code>CTR</code> 模式下的 <code>IV</code> 值，如果每次加密使用不同的密钥，则无需为随机数</p>
+</li>
+<li>
+<p>另外对于 <code>OFB</code> 模式来说，只要保证每次加密的IV值的唯一性即可。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="对称密码算法中在使用同一密钥时不应当两次使用同一个-iv-加密数据"><a class="anchor" href="#对称密码算法中在使用同一密钥时不应当两次使用同一个-iv-加密数据"></a>对称密码算法中在使用同一密钥时，不应当两次使用同一个 <code>IV</code> 加密数据</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>初始化向量IV值与密钥相比有不同的安全性需求，IV通常无需保密，不应当在使用同一密钥的情况下两次使用同一IV来加密数据。因为同一密钥情况下重用IV，则相同的密文块加密前的明文块是相同的，这样就可能会遭受选择明文攻击。另外对于某些特定算法或工作模式同一密钥的情况下重用IV会带来严重安全漏洞。如：</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>使用 <code>OFB</code> 工作模式或使用流密码（如 <code>RC4</code>）加密时，如果使用相同的IV值和密钥来加密两条消息，攻击者知道了加密后的两个消息之一的明文，就可以对另外一个消息包进行解密；</p>
+</li>
+<li>
+<p>对于CFB工作模式而言，如果使用相同的IV值和密钥来加密两条消息，攻击者知道了加密后的两个消息包之一的明文，则另一个消息包的首个明文块信息泄露。</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="使用-aes-分组密码算法来代替-rc4-流密码算法"><a class="anchor" href="#使用-aes-分组密码算法来代替-rc4-流密码算法"></a>使用 <code>AES</code> 分组密码算法来代替 <code>RC4</code> 流密码算法</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>RC4</code> 算法在使用时很容易出现错误，尽量避免使用，推荐用 <code>AES-CTR</code> 或 <code>AES-OFB</code> 替代。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>使用RC4算法加解密应满足以下规则（标准协议要求要支持RC4算法的场景除外）</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>对不同数据使用同一主密钥加密时必须使用不同的IV值和主密钥一起生成密钥流。如果不使用IV或IV值不变，攻击者知道了其中一个加密数据的明文，就可以对其它密文进行解密。IV可以是安全的随机数或者计数器。</p>
+</li>
+<li>
+<p>必须使用安全的哈希函数作用于主密钥和IV，再生成密钥流。如果主密钥与IV只是简单拼接异或，也可能造成主密钥泄露。</p>
+</li>
+<li>
+<p>不适用生成密钥流的前512个字节。由于RC4算法生成密钥流开始的一些比特随机性较差，在实际使用中应弃掉前512字节。</p>
+</li>
+<li>
+<p>保证加密数据的完整性。由于RC4的工作方式，攻击者很容易通过翻转密文的比特来翻转明文对应位置的比特，即很容易遭受比特翻转攻击（bit-flipping attack）。因此保证消息的完整性就格外重要。建议使用消息认证码来保证消息的完整性。</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="非对称密码算法"><a class="anchor" href="#非对称密码算法"></a>非对称密码算法</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>非对称密码算法主要用于提供 <code>数据完整性</code> 、 <code>真实性</code> 和 <code>不可抵赖性</code> 服务（ <code>如数字签名</code> ）。 <code>RSA</code>  算法是使用最广泛的非对称加密算法，常用的数字签名算法有DSA、 <code>RSA</code> 以及基于椭圆曲线的 <code>ECDSA</code>。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="规则使用-rsa-算法时要选取合适的公共指数-e"><a class="anchor" href="#规则使用-rsa-算法时要选取合适的公共指数-e"></a>规则：使用 <code>RSA</code> 算法时要选取合适的公共指数 <code>e</code></h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>说明：公共指数e位长越小， <code>RSA</code> 加密或签名校验时的效率越高。若位长过小时（如 <code>e=3</code>），两个不同消息 <code>m1</code>、<code>m2`都使用 `RSA</code> 加密且使用相同的模 <code>N</code> ，当 <code>m1</code> 和 <code>m2</code> 满足某些特定的关系 <code>m1=f(m2)mod N</code> 时，攻击者可能恢复出 <code>m1</code> 、 <code>m2</code>。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>实际使用中e推荐取值为216+1，既0x10001。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="使用-rsa-算法进行加密操作时应选择oaep填充方式"><a class="anchor" href="#使用-rsa-算法进行加密操作时应选择oaep填充方式"></a>使用 <code>RSA</code> 算法进行加密操作时，应选择OAEP填充方式</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>对数据进行填充要非常谨慎，因为一些有经验的黑客有可能从中找到一些线索，早期的PKCS#1填充标准就曾受到一种自适应选择明文攻击的威胁。 <code>RSA</code> 实验室在PKCS#1V1.5以后的标准中增加了OAEP填充模式，可以有效阻止这类威胁。一般算法提供的接口函数中都会有填充方式选择参数，如OpenSSL中为 <code>RSA</code> _PKCS1_OAEP_PADDING.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="数字签名"><a class="anchor" href="#数字签名"></a>数字签名</h4>
+
+</div>
+<div class="sect3">
+<h4 id="使用dsa签名时要保证签名的rs值均不为0"><a class="anchor" href="#使用dsa签名时要保证签名的rs值均不为0"></a>使用DSA签名时要保证签名的r、s值均不为0</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>使用DSA进行数字签名时，签名的结果为（r，s），这里需要对r、s值进行校验，若r=0或者s=0，则重新选择随机数k生成签名。因为如果r=0，签名结果不依赖于私钥，很容易计算出k，进而伪造签名。如果s=0，则容易求取私钥进行伪造签名。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="在同时进行对称算法加密和非对称算法签名时使用先签名后加密的方式"><a class="anchor" href="#在同时进行对称算法加密和非对称算法签名时使用先签名后加密的方式"></a>在同时进行对称算法加密和非对称算法签名时，使用先签名后加密的方式</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>先签名后加密是指非对称算法先对消息进行签名，然后将签名和消息一起进行对称算法加密。如果采用先加密后签名的方式，接收方只能知道该消息是由签名者发送过来的，但并不能确定签名者是该消息的创建者。比如在发送一个认证凭据时采用先加密后签名，消息在发送过程中就有可能被三方截获并将签名修改为自己的签名。然后发送给接收方。第三方就有可能在不需知道认证凭据的情况下通过这种方式来通过认证获取权限。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>采用先非对称算法签名后非对称算法加密方式可以避免这类问题的发生，因为只有在知道消息内容的情况下才能对其进行签名。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="不要使用二进制域的ecdsa认证方式"><a class="anchor" href="#不要使用二进制域的ecdsa认证方式"></a>不要使用二进制域的ECDSA认证方式</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>ECDSA使用了椭圆曲线密码学原理（ECC），ECC有素数域和二进制域两种实现方式，后者在专门的硬件上实现计算更为有效，前者通常在通用的处理器上更为有效。
+2011年3月19日，两位研究者在他们发表的IACR论文中证明：通过时间攻击从使用带二进制域ECDSA认证的OpenSSL的服务器中恢复出TSL私钥是可能的。这种威胁的OpenSSL 1.0.0e版本中已经修复。出于安全考虑，不要再使用二进制域的ECDSA签名认证方式。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="哈希函数"><a class="anchor" href="#哈希函数"></a>哈希函数</h4>
+<div class="paragraph">
+<p>哈希函数将任意长度的输入转换为固定长度的值，哈希算法也叫摘要算法、单向散列函数、数字指纹算法。许多提供安全服务的算法中都将哈希算法作为其算法的一部分。比如数字签名、基于哈希的消息验证码、密钥导出函数和随机数生成器。口令的单向哈希保存也需要用到哈希函数。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="口令单向哈希的生成必须使用基于口令的kdf算法"><a class="anchor" href="#口令单向哈希的生成必须使用基于口令的kdf算法"></a>口令单向哈希的生成，必须使用基于口令的KDF算法</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>口令属于个人敏感数据，即使是系统管理员也不应该知道用户的明文口令。所以应只存储口令单向哈希值。但单纯的口令哈希值，无法防止彩虹表攻击（彩虹表就是一个庞大的、针对各种可能的字母组合预先计算好的哈希值的集合）。增加了盐值计算出来的哈希值，可以防止相同口令生成相同的哈希值，但是在hashcat这种GPU计算资源的暴力破解工具面前，安全性仍不足。所以口令哈希的计算在增加盐值的基础上还要考虑迭代计算。</p>
+</div>
+<div class="paragraph">
+<p>在这种场景下可以使用基于口令的密钥导出算法，如PBKDF2和scrypt等。PBKDF2是一个密钥导出函数，并且已在RFC2898标准中定义。它使用最为广泛，能被大多数算法库所支持，因此优先推荐使用PBKDF2。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>规则描述：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>口令的单向哈希生成应使用基于口令的密钥导出算法，如PBKDF2和scrypt等；</p>
+</li>
+<li>
+<p>使用PBKDF2时迭代次数缺省建议为50000次，对于有性能约束的软件（如嵌入式系统）可以适当降低，推荐至少5000次；</p>
+</li>
+<li>
+<p>哈希函数推荐选择SHA256或更安全的算法；</p>
+</li>
+<li>
+<p>盐值至少8字节，应使用安全的随机数。
+例外情况：只有针对客户端才可以例外（如：客户端需要记住口令或者登陆凭证等用于自动登录的场景，以及认证协议有约束的场景如：digest-MD5认证）除外。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>消息认证码（MAC）用于保证数据的真实性和完整性。大多数MAC算法用来检测数据在产生MAC值到校验MAC值期间是否发生修改。它检测不到产生MAC值之前发生的修改。本小节将介绍MAC应用的典型误用。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="禁止将hashkeymessage方式当做mac来使用"><a class="anchor" href="#禁止将hashkeymessage方式当做mac来使用"></a>禁止将hash(key||message)方式当做MAC来使用</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>这种方式是指直接将密钥与消息进行拼接后再进行哈希运算达到计算MAC的目的。这种方式存在风险，因为安全的MAC函数必须保证其不可伪造性，即在不知道密钥key的情况下，攻击者很难构造出新的消息和齐对应的MAC值，单采用这种方式攻击者可以达到这种目的。</p>
+</div>
+<div class="paragraph">
+<p>如果将hash(key||message)作为MAC来使用，很容易遭受消息扩展攻击（length extension attack）。攻击者如果知道hash(key||message)和message，可以在不知道key的情况下计算得到h=hash(key||message||padm||message’)（其中padm为计算hash(key||message)时的填充，message’可为任意消息），然后可将message||padm||message’和h一起发送给接收者。接收者察觉不到message已经被修改。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>因此，不要将hash(key||message)作为MAC来使用，应使用标准的MAC算法（如HMAC和CMAC）。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="在同时进行加密操作和mac计算时要使用不同的密钥"><a class="anchor" href="#在同时进行加密操作和mac计算时要使用不同的密钥"></a>在同时进行加密操作和MAC计算时，要使用不同的密钥</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>加密操作和MAC计算使用相同的密钥在某些情况下会引入安全问题，如CBC分组加密结合CBC-MAC一起使用时，如果使用同一密钥，将会使得认证功能失效。加密操作和MAC计算使用同一密钥本身也违背了密钥用途单一性的原则，如果其中一种用途被破解后另外一种用途也同时失效。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>推荐的做法：一种简单的方式是使用带认证的加密模式，如GCM和CCM。这种方式用户只需一个密钥和IV就可得到密文和MAC值，也能保证其安全性。单这两种模式只有部分算法库和 协议支持（如OpenSSL的EVP接口，TLS v1.2）。对于新的应用，如果所选用的算法库和协议支持，应尽可能使用这两种加密模式。</p>
+</div>
+<div class="paragraph">
+<p>还有一种更通用的做法是使用密钥导出函数KDF，通过一个主密钥导出来个子密钥，分别用于加密和MAC计算。这种做法适用于算法库或协议不支持带认证的加密模式以及需要考虑兼容性的场景。此时的加密和MAC操作推荐使用Encrypt-then-MAC方式，即先对消息进行加密然后计算密文的MAC值。相比其他方式（Encrypt-and-MAC、Encrypt-then-MAC），Encrypt-then-MAC还具备IND-CPA（Indistinguishability under chosen-plaintext attack）安全特性。强烈建议MAC是将加密用的IV和密文结合在一起计算MAC值，这样可同时保证IV的完整性。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="密钥管理-1"><a class="anchor" href="#密钥管理-1"></a>密钥管理 <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>对密码算法中用到的密钥进行安全管理对整个系统的安全性至关重要。如果使用不恰当的密钥管理方式，使用再强的密码算法也无济于事。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>密钥应以不可预知的方式生成</p>
+</li>
+<li>
+<p>密钥需要有过期时间，且过期时间要小于字典穷举攻击获得密钥的最短时间</p>
+</li>
+<li>
+<p>密钥存储必须进行加密等操作，除非在有一定安全的容器中</p>
+</li>
+<li>
+<p>密钥分离：一个群组间的密钥泄漏不应影响其他群组的密钥</p>
+</li>
+<li>
+<p>密钥需要一定的备份机制，能够恢复，但不应因此降低密钥管理的安全性</p>
+</li>
+<li>
+<p>每一个密钥都有特定的用途，密钥不能用于其他的目的</p>
+</li>
+<li>
+<p>密钥不能被非授权地查询、修改、替换、删除或插入</p>
+</li>
+<li>
+<p>系统应能够检测出任何密钥的泄露，当检测到密钥泄露或疑似泄露时，应立即停止使用</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="典型场景应用指导"><a class="anchor" href="#典型场景应用指导"></a>典型场景应用指导</h3>
+<div class="sect3">
+<h4 id="不需要还原口令的存储单向哈希"><a class="anchor" href="#不需要还原口令的存储单向哈希"></a>不需要还原口令的存储（单向哈希）</h4>
+<div class="paragraph">
+<p>举例：用户登录口令、支付密码</p>
+</div>
+<div class="paragraph">
+<p>方案：口令单向哈希场景下推荐使用PBKDF2算法，通过输入口令（明文）生成哈希值。
+PBKDF2算法（RFC2898）是一个密钥导出算法。即可用于导出密钥，也可用于口令保存。计算公式 <code>DK=PBKDF2(P, S, c, Hash, dkLen)</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>输入：
+   P：口令，字节串；
+   S ：盐值，字节串；
+   c ：迭代次数，正整数；
+   dkLen ：导出密钥的指定字节长度，正整数；
+输出：
+   DK：导出密钥，长度dkLen字节。在这里就是最终存储的口令哈希值。
+   采用PBKDF2算法可以有效增加彩虹表攻击的难度。通过增加迭代次数增加暴力破解的耗时，单对完成一次认证的性能影响不大。</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>连续哈希一个值，值域会缩小，虽然缩小的程度很小很小。这样做的好处是什么呢？破解者也需要同样的哈希次数，延长了时间。无论是直接碰撞还是建立彩虹表，都要付出更加 x 循环次数 倍的时间。目前黑客手里都有循环几十次的彩虹表，所以只连续哈希数次，还不如不循环。如果计算能力足够，非用这种方法，起码上千到几万次。循环太多了的话，计算开销划不着，值域缩小也会比较明显。所以不建议单纯的连续哈希。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>要点：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Hash函数：选择SHA256或更安全的哈希算法。</p>
+</li>
+<li>
+<p>迭代次数：增加迭代次数绝对安全，也可以采取连续哈希时，每次加盐，加不同的盐，只需进行几次运算即可。</p>
+</li>
+<li>
+<p>Salt：至少8字节，且为安全随机数。</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>业界迭代册数取值普遍 <code>10000+</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="可还原口令的存储对称加密"><a class="anchor" href="#可还原口令的存储对称加密"></a>可还原口令的存储（对称加密）</h4>
+<div class="paragraph">
+<p><a href="../../../ref/aes.html">AES 介绍</a></p>
+</div>
+<div class="paragraph">
+<p>举例：数据库密码、第三方系统的口令（远程登录密码）、系统间秘密数据交互交互、密钥、银行卡号、余额等</p>
+</div>
+<div class="paragraph">
+<p>方案：采取封装好的AES方法</p>
+</div>
+<div class="paragraph">
+<p>要点：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>AES 算法、CBC模式</p>
+</li>
+<li>
+<p>分组填充方式使用PKCS#7中定义的填充方式(填充的值为填充的字节数，当应用环境要求密文与明文长度相同时，可使用特殊的填充方式CBC-CS（具体参考标准SP800-38A-Addemdura）</p>
+</li>
+<li>
+<p>加密中所需的IV值，由安全随机数发生器产生</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="文件加密"><a class="anchor" href="#文件加密"></a>文件加密</h4>
+<div class="paragraph">
+<p>举例：系统间传输文件，重要文件存储。</p>
+</div>
+<div class="paragraph">
+<p>方案：对文件的加密要使用对称加密，推荐使用AES加密算法的CBC模式。为防止文件过大，无法一次性读入内存，可采用将文件加密处理的方式，加密后密文合并到一个文件。IV可附加到文件密文一起保存。
+如果是采用用户输入口令方式解密文件，则文件加密密钥可由口令派生出的密钥（如使用PBKDF2函数）进行对称加密后和IV等信息一起保存在文件头或尾部。</p>
+</div>
+<div class="paragraph">
+<p>要点：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>对文件等大量数据进行加密时使用CBC模式；</p>
+</li>
+<li>
+<p>加密中所需的IV值，由安全随机数发生器产生。不同文件IV不能相同。</p>
+</li>
+<li>
+<p>分块读取文件内容进行加解密处理后再保存合并到一个文件。</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="安全数据非对称加解密"><a class="anchor" href="#安全数据非对称加解密"></a>安全数据非对称加解密</h4>
+<div class="paragraph">
+<p>举例：客户端与服务器传递密钥、传递用户口令</p>
+</div>
+<div class="paragraph">
+<p>方案：服务器端产生公私钥对，将公钥传递给客户端。公私钥对可在程序中产生也可使用外部工具产生。公钥不需要加密，私钥在服务器端需要加密保存。客户端给服务器发送敏感数据时用服务器公钥进行加密，服务器端用私钥进行解密。</p>
+</div>
+<div class="paragraph">
+<p>要点：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>为保证112位的安全强度，使用 <code>RSA</code> 算法时密钥长度至少为 <code>2048</code>。</p>
+</li>
+<li>
+<p>使用 <code>RSA</code> 算法时使用 <code>OAEP</code> 填充方式。使用 <code>OAEP</code> 填充方式时输入明文长度必须比 <code>RSA</code> 密钥长度少41字节，对于 <code>2048</code> 位的密钥，明文长度必须少于 <code>2048/8-41=215</code> 字节。输入大于相应长度时必须进行切割再填充。</p>
+</li>
+<li>
+<p>使用 <code>RSA</code> 算法时的公共指数e通常	取值为216+1，即 <code>0x1001</code>。</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="网络安全传输"><a class="anchor" href="#网络安全传输"></a>网络安全传输</h4>
+<div class="paragraph">
+<p>在非信任的网络中，需要进行敏感数据的批量传输，如果可能的话，尽量使用已经成熟的安全标准，而不是自己在构造一套。例如，尽量使用SSL/TLS、SSH、IPSec等。</p>
+</div>
+<div class="paragraph">
+<p>以下列举 `SSL/TLS 部署最佳实践`<sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnotedef_3" title="View footnote.">3</a>]</sup> 中推荐内容：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>为确保SSL提供了必要的安全性，在部署SSL/TLS协议时，所有的服务器上，都使用 <code>2048</code> 位的私钥；</p>
+</li>
+<li>
+<p>保护私钥，对私钥的可访问范围做最小化，建议的策略包括：</p>
+<div class="ulist">
+<ul>
+<li>
+<p>将私钥存储到备份系统时，需要用口令加密保护以防止被泄密；</p>
+</li>
+<li>
+<p>一旦发生泄密，吊销所有的旧证书并且为新的证书生成密钥对；</p>
+</li>
+<li>
+<p>每年更新证书，而且永远使用新的私钥。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>从可信CA获得证书；
+默认情况下使用最新的TLS协议版本，使用一些老的版本保持与用户的互通性。SSL/TLS协议一共有5个版本: SSL v2, SSL v3, TLS v1.0, TLS v1.1和TLS v1.2，其中：</p>
+<div class="ulist">
+<ul>
+<li>
+<p>SSL v2不安全，一定不能使用</p>
+</li>
+<li>
+<p>SSL v3和TLS v1.0不安全，不能使用</p>
+</li>
+<li>
+<p>TLS v1.1和TLS v1.2没有已知的安全问题（TLSv1.1大体上还可以使用。并不知道其用于HTTP之外的协议时存在什么安全缺陷）</p>
+</li>
+<li>
+<p><strong>TLS v1.2</strong> 首选</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>只使用安全的加密套件。<strong>推荐使用128比特或更高安全强度的加密套件</strong>，其它的必须 <strong>限制使用，如：</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>匿名DH（ADH）套件不提供认证功能；</p>
+</li>
+<li>
+<p>NULL套件不提供加密功能；</p>
+</li>
+<li>
+<p>出口密钥交换套件使用了容易被破解的认证机制；</p>
+</li>
+<li>
+<p>使用弱加密算法的套件使用的加密算法（如DES、3DES、RC4）容易被破解。</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="附录"><a class="anchor" href="#附录"></a>附录</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="常见算法简介"><a class="anchor" href="#常见算法简介"></a>常见算法简介</h3>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. 常见算法简介</caption>
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6669%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">算法名称</th>
+<th class="tableblock halign-left valign-top">标准编号</th>
+<th class="tableblock halign-left valign-top">标准名称</th>
+<th class="tableblock halign-left valign-top">发布机构</th>
+<th class="tableblock halign-left valign-top">发布时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">DES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FIPS 46-3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Data Encryption Standard</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NIST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1999</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">AES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FIPS 197</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Advanced Encryption Standard</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NIST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2001</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">3 DES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SP 800-67 Rev.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Triple Data Encryption Algorithm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NIST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2012</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">RC4</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ron Rivest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1994</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">SM4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GM/T 0002-2012</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SM4分组密码算法</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">国家密码管理局</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2012</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock"><code>RSA</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PKCS#IV2.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PKCS#IV2.2 <code>RSA</code> Cryptography Standard</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>RSA</code> Lab</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2012</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">RFC3447</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Public-Key Cryptography Standards(PKCS) #1: <code>RSA</code> Cryptography Specifications Version 2.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IETF</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2003</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock">DSA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FIPS 186-3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Digital Signature Standard (DSS)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NIST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2009</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">FIPS 186-3 Proposed Change</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DRAFT Proposed Change Notice for Digital Signature Standard (DSS)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NIST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2012</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">ECDSA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ANS X9.62-2003</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Public-Key Cryptography for the Financial Services Industry: The Elliptic Curve Digital Signature Algorithm(ECDSA)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ANSI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2005</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">SM2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GM/T 0003-2012</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SM2椭圆曲线公钥密码算法</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">国家密码管理局</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2012</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle" rowspan="3"><p class="tableblock">DH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RFC2631</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Diffie-Hellman Key Agreement Method</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IETF</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1999</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">PKCS#3 V1.4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Diffie-Hellman Key Agreement Standard</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>RSA</code> Lab</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1993</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">IEEE Std 1363-2000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Standard Specifications for Public Key Cryptography</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IEEE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock">SHA1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FIPS 180-4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Secure Hash Standard(SHS)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NIST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2012</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">RFC 3174</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">US Secure Hash Algorithm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IETF</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2001</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">SHA2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FIPS 180-4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Secure Hash Standard(SHS)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NIST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2012</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">MD5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RFC 1321</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The MD5 Message-Digest Algorithm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IETF</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1992</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">SM3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GM/T 0004-2012</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SM3密码杂凑算法</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">国家密码管理局</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2012</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock">HMAC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FIPS 198-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Key-Hash Message Authentication Code(HMAC)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NIST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2008</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">RFC 2104</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HMAC Keyed-Hashing for Message Authentication</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IETF</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1997</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle" rowspan="7"><p class="tableblock">工作模式</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SP 800-38A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Recommendation for Block Cipher Modes of Operation: Methods and Techniques</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NIST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2001</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">SP 800-38A-Addendum</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Recommendation for Block Cipher Modes of Operation: Three Variants of Ciphertext Stealing for CBC Mode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NIST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2010</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">SP 800-38B</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Recommendation for Block Cipher Modes of Operation: The CMAC Mode for Authentication</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NIST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2005</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">SP 800-38C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Recommendation for Block Cipher Modes of Operation: The CCM Mode for Authentication and Confidentiality</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NIST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2004</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">SP 800-38D</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Recommendation for Block Cipher Modes of Operation: Galois/Counter Mode (GCM) and GMAC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NIST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2007</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">SP 800-38E</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Recommendation for Block Cipher Modes of Operation: The XTS-AES Mode for Confidentiality on Storage Devices</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NIST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2010</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">SP 800-38F</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Recommendation for Block Cipher Modes of Operation: Methods for Key Wrapping</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NIST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2012</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock">PHE基于口令加密</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PKCS#5 V2.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Password-based Encryption Standard</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>RSA</code> Lab</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2012</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">RFC 2829</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Authentication Methods for LDAP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IETF</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock">消息格式</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PKCS#7 V1.5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cryptographic Message Syntax Standard</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>RSA</code> Lab</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1993</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">RFC 3852</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cryptographic Message Syntax (CMS)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IETF</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2004</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle" rowspan="3"><p class="tableblock">KDF密钥导出函数</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PKCS#5 V2.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Password-based Encryption Standard</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>RSA</code> Lab</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2012</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">RFC 5869</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HMAC-based Extract-and-Expand Key Derivation Function (HKDF)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IETF</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2010</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">SP 800-108</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Recommendation for Key Derivation Using Pseudorandom Functions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NIST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2009</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. 密钥管理原则, <a href="https://blog.csdn.net/tenfyguo/article/details/15813521" class="bare">https://blog.csdn.net/tenfyguo/article/details/15813521</a>
+</div>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. 信息安全的基本属性, <a href="http://www.cnitpm.com/pm/33452.html" class="bare">http://www.cnitpm.com/pm/33452.html</a>
+</div>
+<div class="footnote" id="_footnotedef_2">
+<a href="#_footnoteref_2">2</a>. 美国国家标准与技术研究院 Special Publications 800 <a href="https://csrc.nist.gov/publications/sp" class="bare">https://csrc.nist.gov/publications/sp</a>
+</div>
+<div class="footnote" id="_footnotedef_3">
+<a href="#_footnoteref_3">3</a>. 《SSL/TLS Deployment Best practices》, <a href="https://www.ssllabs.com/downloads/SSL_TLS_Deployment_Best_Practices" class="bare">https://www.ssllabs.com/downloads/SSL_TLS_Deployment_Best_Practices</a>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 0.0.1-SNAPSHOT<br>
+Last updated 2020-07-26 17:48:30 UTC
+</div>
+</div>
+</body>
+</html>

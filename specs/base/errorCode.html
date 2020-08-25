@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.2">
+<meta name="author" content="lym">
+<title>错误码规范</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment @import statement when using as custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}
+audio,canvas,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+script{display:none!important}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*::before,*::after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite::before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
+:not(pre)>code.nobreak{word-wrap:normal}
+:not(pre)>code.nowrap{white-space:nowrap}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details>summary:first-of-type{cursor:pointer;display:list-item;outline:none;margin-bottom:.75em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class="highlight"],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos{border-right:1px solid currentColor;opacity:.35;padding-right:.5em}
+pre.pygments .lineno{border-right:1px solid currentColor;opacity:.35;display:inline-block;margin-right:.75em}
+pre.pygments .lineno::before{content:"";margin-right:-.125em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin:0 0 1.25em;padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
+table.tableblock{max-width:100%;border-collapse:separate}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
+table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
+table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
+table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px}
+table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0}
+table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
+table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot,table.frame-ends{border-width:1px 0}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
+ul.inline{display:-ms-flexbox;display:-webkit-box;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media print,amzn-kf8{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>错误码规范</h1>
+<div class="details">
+<span id="author" class="author">lym</span><br>
+<span id="email" class="email">&lt;<a href="mailto:cn_lym@foxmail.com">cn_lym@foxmail.com</a>&gt;</span><br>
+<span id="revnumber">version 0.0.1-SNAPSHOT,</span>
+<span id="revdate">2020-07-26 17</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#术语定义">术语定义：</a></li>
+<li><a href="#规范约束">规范约束</a>
+<ul class="sectlevel2">
+<li><a href="#错误码格式约束">错误码格式约束</a></li>
+<li><a href="#错误码输出约束">错误码输出约束</a></li>
+<li><a href="#错误类型标识码方案建议">错误类型标识码方案建议</a></li>
+</ul>
+</li>
+<li><a href="#错误码翻译项">错误码翻译项</a></li>
+<li><a href="#编码注意事项接口全局异常处理建议">编码注意事项：接口全局异常处理建议</a>
+<ul class="sectlevel2">
+<li><a href="#异常分类">异常分类</a>
+<ul class="sectlevel3">
+<li><a href="#异常对象属性与返回值对应关系">异常对象属性与返回值对应关系</a></li>
+<li><a href="#异常日志级别与http响应状态码分类">异常日志级别与HTTP响应状态码分类</a></li>
+<li><a href="#日志异常错误码http-状态码关系">日志、异常、错误码、HTTP 状态码关系</a></li>
+<li><a href="#代码中其他设计注意点">代码中其他设计注意点</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#错误码带来的效果倒叙">错误码带来的效果（倒叙）</a>
+<ul class="sectlevel2">
+<li><a href="#错误码的好处">错误码的好处</a></li>
+<li><a href="#错误码的代价">错误码的代价</a></li>
+</ul>
+</li>
+<li><a href="#结论">结论</a></li>
+<li><a href="#如何管理错误码">如何管理错误码</a>
+<ul class="sectlevel2">
+<li><a href="#使用从左到右依次分类细化">使用从左到右依次分类、细化</a></li>
+<li><a href="#压缩错误码长度">压缩错误码长度</a></li>
+<li><a href="#示例">示例</a></li>
+<li><a href="#代码中如何选择错误码的类型">代码中如何选择错误码的类型</a></li>
+</ul>
+</li>
+<li><a href="#通用错误码举例">通用错误码举例</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="术语定义"><a class="anchor" href="#术语定义"></a>术语定义：</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>错误码</p>
+<div class="ulist">
+<ul>
+<li>
+<p>特定的错误的标识，可用于自动化处理或或便于排查等。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>程序处理状态</p>
+<div class="ulist">
+<ul>
+<li>
+<p>成功</p>
+<div class="ulist">
+<ul>
+<li>
+<p>服务器理解请求的意图，并正确执行了该请求。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>正常失败</p>
+<div class="ulist">
+<ul>
+<li>
+<p>请求或处理过程种与服务器所期待的状态不一致，且服务器知晓这类错误的原因（在编码时便考虑到了），拒绝执行了该请求。如：请求参数不合法、无权限等。这类错误通常需要提醒使用者修改输入。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>异常失败</p>
+<div class="ulist">
+<ul>
+<li>
+<p>请求已被服务器接收理解，认为其合法，但在执行时未能正确处理请求，如：<code>NullPointException</code>、assert 失败等（在编码时未考虑到或认为不应该发生的错误）。这类错误运行时本不应该发生，需要维护者来排查。</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="规范约束"><a class="anchor" href="#规范约束"></a>规范约束</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>WARN 级别及以上日志中必须要记录错误码。</p>
+</div>
+<div class="sect2">
+<h3 id="错误码格式约束"><a class="anchor" href="#错误码格式约束"></a>错误码格式约束</h3>
+<div class="paragraph">
+<p>错误码分段定义： <code>32</code> 位的无符号整型数字，由两部分构成：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>应用标识码，前 <code>16</code> 位：用于标识那个应用、服务的错误、其中 <code>0</code> 保留。</p>
+</li>
+<li>
+<p>错误类型码，后 <code>16</code> 位；用于标识该应用内错误类型</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>特殊的，错误码 <code>0</code> 表示成功（所有位为0）。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="错误码输出约束"><a class="anchor" href="#错误码输出约束"></a>错误码输出约束</h3>
+<div class="paragraph">
+<p>错误码输出时：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>采用 <code>16</code> 进制</p>
+</li>
+<li>
+<p>全小写字符</p>
+</li>
+<li>
+<p>以 <code>0x</code> 开头</p>
+</li>
+<li>
+<p>长度为10个字符</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>例：<code>0x00aa0f01</code>：除了 <code>0x</code> 外，前 4 个字符标识了哪个应用出错，后 4 个字符标识具体错误类型。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>不对代码中错误码类型定义做限制，如可以是数字，也可以是字符串，还可以枚举等。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="错误类型标识码方案建议"><a class="anchor" href="#错误类型标识码方案建议"></a>错误类型标识码方案建议</h3>
+<div class="paragraph">
+<p>错误类型标识码共16位，可以将前几位标识类型，后几位位标识具体错误，使得错误码更容易读，如前8位标识错误类别，后8位表示该类别下的具体错误。</p>
+</div>
+<div class="paragraph">
+<p>分类举例：</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 50%;">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">编码</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">分类</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">公共错误</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">认证错误</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">系统错误</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">中间件（如 数据库、MQ）错误</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">标准协议（如 HTTP）错误</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">参数错误</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">服务异常</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">网络错误（调用其他服务等）</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">其他错误</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="错误码翻译项"><a class="anchor" href="#错误码翻译项"></a>错误码翻译项</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>为了更好的用户体验，错误码通常需要对应的描述信息与建议，而在不同语言环境下，还需要不同的翻译内容，因此需要对应的多语言key。
+为了方便建立错误码排查系统，需要规范这部分内容，推荐多语言相关翻译key定义如下：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>错误描述：<code>err.&lt;错误码&gt;.desc</code></p>
+</li>
+<li>
+<p>排查建议：<code>err.&lt;错误码&gt;.sug</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="编码注意事项接口全局异常处理建议"><a class="anchor" href="#编码注意事项接口全局异常处理建议"></a>编码注意事项：接口全局异常处理建议</h2>
+<div class="sectionbody">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>建议不要到处无意义的 <code>try..catch</code>、<code>if null</code> 等，这样并不是所谓 <strong>健壮性</strong> 代码，反而大大降低代码的 <strong>可读性</strong> 。</p>
+</div>
+<div class="paragraph">
+<p>大部分时候产生某个异常，<code>catch</code> 并不能做什么，单纯增加了代码量；而 null 如果允许则进行判断，否则应该检查为什么出现 null 而不是用 if 掩盖问题。，不应掩盖问题，而应让及时暴露问题。</p>
+</div>
+<div class="paragraph">
+<p>提前进行异常分类，定义 <code>BaseRuntimeException</code> 做好全局异常处理，根据不同类型的异常，记录相应级别的日志，返回对应的状态码等。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="异常分类"><a class="anchor" href="#异常分类"></a>异常分类</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>第三方 jar包中的 Runtime 类异常</p>
+<div class="ulist">
+<ul>
+<li>
+<p>warn/error 级别记录。因为这是开发设计过程意料之外的错误（未捕获）。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>[.line-through]需要记录 INFO 级别日志的异常，且 HTTP 状态码为 200 <strong>（废弃）</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>[.line-through]参数正确，但当前时间或当前系统状态拒绝执行该操作。 <strong>（废弃）</strong></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>需要记录 INFO 级别日志的异常，且 HTTP 状态码为 400</p>
+<div class="ulist">
+<ul>
+<li>
+<p>异常发生在具体的业务场景，这类异常往往由使用者的输入直接或间接导致，因此需要让使用者知道错误产生原因与解决/避免该类错误的方法。</p>
+</li>
+<li>
+<p>服务端记录 info 日志，返回 <code>400</code> HTTP 状态码， <code>Body</code> 可为 <code>{"code":"0x12345678", "msg":"用户名最长支持18个字符，当前%s个字符", "data":[20]}</code> 这种，UI层一般不展示错误码，而是根据错误码或msg来进行提示。</p>
+</li>
+<li>
+<p>可以返回统一的参数缺失、参数格式错误不正确等对应的错误码，返回多语言key；也可以直接返回具体某个参数错误的错误码，调用方根据错误码翻译（可能会有大量的错误码产生）。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>场景举例：接口入参校验不通过，查询数据库中不存在的数据，不合法的枚举值等，</p>
+</li>
+<li>
+<p>需要记录 WARN 级别日志的异常，且 HTTP 状态码为 500</p>
+</li>
+<li>
+<p>需要记录 ERROR 级别日志的异常，且 HTTP 状态码为 500</p>
+<div class="ulist">
+<ul>
+<li>
+<p>基础通用异常: 一般不会发生的问题，一旦发生，通常需要人工排查和修复，抛出该异常代表服务器无法继续处理或完成业务处理，错误信息无法体现业务场景，这类异常不需要让用户知道细节和产生错误的原因。</p>
+</li>
+<li>
+<p>需要记录 error 日志，返回 500 HTTP 状态码。UI层一般直接提示为服务器异常，请稍后再试（选择性展示错误码xxx，调用链xxx），可能需要触发日志错误码告警。</p>
+</li>
+<li>
+<p>场景举例：json序列化异常、加解密异常、调用其他服务接口异常、数据库连接失败、</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="异常对象属性与返回值对应关系"><a class="anchor" href="#异常对象属性与返回值对应关系"></a>异常对象属性与返回值对应关系</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>code</code> （错误码）对应返回值的 <code>code</code></p>
+</li>
+<li>
+<p><code>msg</code> 对应返回值的 <code>msg</code></p>
+</li>
+<li>
+<p><code>param</code> 对应返回值的 <code>data</code>，一般用于多语言翻译填充</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="异常日志级别与http响应状态码分类"><a class="anchor" href="#异常日志级别与http响应状态码分类"></a>异常日志级别与HTTP响应状态码分类</h4>
+<div class="paragraph">
+<p><strong>种类：</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[.line-through]INFO 200</p>
+</li>
+<li>
+<p>INFO 400</p>
+</li>
+<li>
+<p>WARN 500</p>
+</li>
+<li>
+<p>ERROR 500</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>特殊：</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>401</p>
+</li>
+<li>
+<p>403</p>
+</li>
+<li>
+<p>404</p>
+</li>
+<li>
+<p>405</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="日志异常错误码http-状态码关系"><a class="anchor" href="#日志异常错误码http-状态码关系"></a>日志、异常、错误码、HTTP 状态码关系</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>异常后要记录日志，但通常情况下，异常后日志级别往往为 <code>WARN</code> 或以上，因此若将错误码绑定到异常中，使用者记录日志将大幅简化。代价：异常类依赖错误码。</p>
+</li>
+<li>
+<p>自定义异常往往需要错误码，但如果把这些异常全部定义出来，开发和维护成本都将升高，如果定义一个通用的异常类，只需要定义一些错误码，抛出时用错误码抛，使用者代码将大幅简化。代价：错误码依赖异常类。</p>
+</li>
+<li>
+<p>记录日志时，若抛出了异常，则只需要将异常放入记录即可，将大幅简化代码。代价：日志依赖异常类。</p>
+</li>
+<li>
+<p>记录日志时，若未抛出异常，但要记录错误码，如果使用 <code>log.xx(ErrorCode)</code> 这种方式，将大幅简化使用者的代码。代价：日志依赖错误码。</p>
+</li>
+<li>
+<p>若可以通过异常来确定返回的HTTP错误码，便可以通过全局异常处理来简化使用者的代码。代价：异常依赖 <code>HTTP响应状态码</code></p>
+</li>
+<li>
+<p>缺点：可能限制使用者二次框架的开发。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>出于以上原因，可以看到日志、异常、错误码这三者的相互耦合可以大幅简化使用者的书写方式，由于使用方式足够简化，且在一个系统中风格一般为统一，这样设计未见明显弊端，故可以这么设计。</p>
+</div>
+<div class="paragraph">
+<p>做法：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>自定义日志接口</p>
+</li>
+<li>
+<p>自定义几种异常类（为了使用方便，采用运行时异常），也可以定义附带多个字段的单个基础异常类</p>
+</li>
+<li>
+<p>自定义错误码接口（可选，能简化使用）</p>
+</li>
+<li>
+<p>由于相互耦合需要将三者在一个模块内定义</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>简化日志的使用</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>日志接口直接集成 <code>Sl4j</code> 的接口，以兼容主流日志框架</p>
+</li>
+<li>
+<p>可参考 <code>lombok</code>，将 <code>Sl4j</code> 转化为自己定义的日志 <code>Logger</code> 类，或新定义类似注解，注入自己定义的日志 <code>Logger</code> 类</p>
+</li>
+<li>
+<p>推荐使用者只关心错误码接口，其他自动化完成，减少上手难度</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="代码中其他设计注意点"><a class="anchor" href="#代码中其他设计注意点"></a>代码中其他设计注意点</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>由于一个应用内的所有错误码前缀都是相同的，可以在代码中不体现这部分，而是在输出时进行统一的拼接，节省程序内存也简化了维护和管理。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="错误码带来的效果倒叙"><a class="anchor" href="#错误码带来的效果倒叙"></a>错误码带来的效果（倒叙）</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>上面给出了结论和落地方式，这里来将为什么用错误码。</p>
+</div>
+<div class="sect2">
+<h3 id="错误码的好处"><a class="anchor" href="#错误码的好处"></a>错误码的好处</h3>
+<div class="paragraph">
+<p>核心有两个思想 <strong>索引</strong>、<strong>封装</strong></p>
+</div>
+<div class="paragraph">
+<p>使用错误码的优势体现在下面几个方面：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>快速定位问题</p>
+<div class="ulist">
+<ul>
+<li>
+<p>无论是代码或者日志，直接搜索错误码是非常快速的</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>利于自动化处理</p>
+<div class="ulist">
+<ul>
+<li>
+<p>根据日志中的错误码，进行自动化处理或告警</p>
+</li>
+<li>
+<p>使得接口调用者可以根据错误码做出一定的处理，若只有提示信息，则不能很好的进行。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>降低沟通成本、减少信息在沟通、传递时的损耗</p>
+<div class="ulist">
+<ul>
+<li>
+<p>出错时，如果只根据错误信息描述，在沟通时可能出现偏差，在描述错误信息时可能会出现损耗而出现歧义或疏漏，但使用错误码不会。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>利于流程管理</p>
+<div class="ulist">
+<ul>
+<li>
+<p>可以根据错误码生产文档，可能产生的错误一目了然</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>提高程序性能</p>
+<div class="ulist">
+<ul>
+<li>
+<p>由于错误码占用空间一般远小于错误提示信息占用空间，因此无论在网络传输或是程序处理时，效率远远高于错误提示信息</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>利于版本迭代、升级</p>
+<div class="ulist">
+<ul>
+<li>
+<p>随着软件升级、版本的迭代，只要错误码还是不变的，即便修改错误描述信息，也不会引起混乱。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>利于差异化展示错误信息</p>
+<div class="ulist">
+<ul>
+<li>
+<p>不同的国家、地区、语言的用户，对于文字的偏好不同，使用错误码可以更轻松的针对用户的喜好修改提示信息。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>封装的思想</p>
+<div class="ulist">
+<ul>
+<li>
+<p>隐藏内部实现、敏感信息，降低软件边界的耦合</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>利于代码维护</p>
+<div class="ulist">
+<ul>
+<li>
+<p>如果直接将提示信息写在代码中，一是增加代码体积；二是当软件功能增多时，维护成本将大大提升，而使用错误码时，维护成本增加的没那么快。</p>
+</li>
+<li>
+<p>对于多人协作的开发模式而言，编码和交互可以由不同的人员专门负责，职责单一，专人办专事。</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="错误码的代价"><a class="anchor" href="#错误码的代价"></a>错误码的代价</h3>
+<div class="paragraph">
+<p>错误码的代价</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>引入额外的开发成本</p>
+<div class="ulist">
+<ul>
+<li>
+<p>需要定义错误码，且不能与已有错误码重复</p>
+</li>
+<li>
+<p>开发者需要使用错误码表达错误信息，就需要额外维护他们的映射关系以及思维上的转变。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>错误信息隐藏</p>
+<div class="ulist">
+<ul>
+<li>
+<p>无法直接从错误码中获取详细的信息，必须借助错误码文档等映射工具才能获取有用信息。</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>其实引入错误码的弊端是和好处对应的，在解决一些问题的同时也引入了另外的的问题。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="结论"><a class="anchor" href="#结论"></a>结论</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>虽然看到错误码的优势是远远大于弊端的，但对于个人开发者或者生命周期短的小型软件而言，上面的优势并不明显，直接输出提示则更好。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="如何管理错误码"><a class="anchor" href="#如何管理错误码"></a>如何管理错误码</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>当软件的功能越来越多时，他的成本也因此升高，因此需要更高效的使用错误码。
+=== 规范错误码格式
+按照一定格式将错误码的分类有利于减少错误码重复/冲突，方便定义错误码，方便快速定位问题。</p>
+</div>
+<div class="sect2">
+<h3 id="使用从左到右依次分类细化"><a class="anchor" href="#使用从左到右依次分类细化"></a>使用从左到右依次分类、细化</h3>
+<div class="paragraph">
+<p>如HTTP协议中第一位是大类分类，剩下的是递增的子类型错误，如看到4xx便关注调用者的错误，看到5xx更关注服务提供者的错误。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="压缩错误码长度"><a class="anchor" href="#压缩错误码长度"></a>压缩错误码长度</h3>
+<div class="paragraph">
+<p>大型软件中往往以十六进制串作为错误码，因为同样长度的16进制比10进制的数看起来更简短，更短即更快，无论是表达和转述或是存储。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="示例"><a class="anchor" href="#示例"></a>示例</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>最高一位固定0，使用数字数表示时永远为正数，表达式中没有负号只有数字，避免歧义</p>
+</li>
+<li>
+<p>第二位0表示系统意料之中的用户输入导致的异常，为1表示系统由于所依赖的基础设施（如网络、系统、其他软件）不能正确响应而导致的错误。</p>
+</li>
+<li>
+<p>第3-13位标识某一个应用</p>
+</li>
+<li>
+<p>剩余位数由应用内部定义，可以按照模块等划分</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>所有错误码都统一按照相同规范划分完毕后，一看到错误码，就可以立刻定位到是系统哪里发生了问题，然后便可以安排对应部分负责人排查。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="代码中如何选择错误码的类型"><a class="anchor" href="#代码中如何选择错误码的类型"></a>代码中如何选择错误码的类型</h3>
+<div class="paragraph">
+<p>在一定规范前提下，C、C++这类基础的程序常常位于底层，与其他程序交互较少或作为提供者，与之交互的系统也通常位数字表达状态，因此使用数字类型更好，如int32比字符串或者枚举占用更少的内存。</p>
+</div>
+<div class="paragraph">
+<p>而更上层的一些语言，经常与其他系统打交道，更适合用String以获取更好的兼容性，由于一个服务中不同错误码有大量的位重复，有的语言利用了字典树，反而可能更节省空间</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="通用错误码举例"><a class="anchor" href="#通用错误码举例"></a>通用错误码举例</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">错误码</th>
+<th class="tableblock halign-left valign-top">错误分类</th>
+<th class="tableblock halign-left valign-top">错误原因</th>
+<th class="tableblock halign-left valign-top">错误原因-英文</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">参数错误</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">必填参数为空</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The required parameter %s is blank.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">参数错误</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">参数范围不正确</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of parameter %s is out of range.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">参数错误</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">参数格式不正确</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The format of parameter %s is not correct.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">参数错误</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">未指定分页大小或者分页过大导致返回报文过长</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Return message too long, please setting paging size.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">服务错误</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">服务性能已达上限</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Service performance reaches the upper limit.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">服务错误</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">服务异常</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Service error.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">服务错误</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">服务响应超时</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Service response timeout.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">服务错误</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">服务不可用</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Service unavailable.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">资源异常</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">资源访问未授权</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Resource unauthorized.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">资源异常</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">资源不存在</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Invalid resource.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">其他错误</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">其他未知错误</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Other error.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 0.0.1-SNAPSHOT<br>
+Last updated 2020-07-26 17:48:30 UTC
+</div>
+</div>
+</body>
+</html>
